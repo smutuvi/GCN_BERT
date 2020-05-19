@@ -75,9 +75,9 @@ tfidf_mode='only_tf'
 # 在clean doc时是否使用bert_tokenizer分词, data3时不用更好
 cfg_use_bert_tokenizer_at_clean=True
 
-bert_model_scale='bert-base-multilingual-uncased'
+bert_model_scale='bert-base-multilingual-cased'
 # bert_model_scale='bert-large-uncased'
-bert_lower_case=True
+bert_lower_case=False
 
 print('---data prepare configure---')
 print('Data set: ',cfg_ds,'freq_min_for_word_choice',freq_min_for_word_choice,'window_size',window_size)
