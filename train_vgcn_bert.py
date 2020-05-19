@@ -85,10 +85,10 @@ elif cfg_ds=='cola':
     learning_rate0 = 8e-6 #2e-5  
     l2_decay = 0.01 
 
-MAX_SEQ_LENGTH = 220+gcn_embedding_dim 
+MAX_SEQ_LENGTH = 210+gcn_embedding_dim 
 gradient_accumulation_steps = 1
-bert_model_scale = 'bert-base-multilingual-cased'
-do_lower_case = False
+bert_model_scale = 'bert-base-multilingual-uncased'
+do_lower_case = True
 warmup_proportion = 0.1
 
 data_dir='data/dump_data'
