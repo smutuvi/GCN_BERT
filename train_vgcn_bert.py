@@ -73,7 +73,7 @@ l2_decay=args.l2
 dataset_list={'sst', 'cola'}
 # hate: 10k, mr: 6753, sst: 7792, r8: 5211
 
-total_train_epochs = 9
+total_train_epochs = 10
 dropout_rate = 0.2  #0.5 # Dropout rate (1 - keep probability).
 if cfg_ds=='sst':
     batch_size = 16 #12   
@@ -82,10 +82,10 @@ if cfg_ds=='sst':
     l2_decay = 0.01 #default
 elif cfg_ds=='cola':
     batch_size = 16 #12
-    learning_rate0 = 5e-5 #8e-6 #2e-5  
+    learning_rate0 = 8e-6 #2e-5  
     l2_decay = 0.01 
 
-MAX_SEQ_LENGTH = 170+gcn_embedding_dim 
+MAX_SEQ_LENGTH = 200+gcn_embedding_dim 
 gradient_accumulation_steps = 1
 bert_model_scale = 'bert-base-multilingual-cased'
 do_lower_case = False
