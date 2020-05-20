@@ -24,6 +24,9 @@ from sklearn.utils import shuffle
 from nltk.corpus import stopwords
 import nltk
 
+from transformers import (BertForSequenceClassification, BertTokenizer, 
+                          RobertaTokenizer, RobertaForSequenceClassification)
+
 random.seed(42)
 np.random.seed(42)
 
