@@ -29,8 +29,7 @@ from sklearn.metrics import f1_score
 from pytorch_pretrained_bert.modeling import BertModel, BertConfig, WEIGHTS_NAME, CONFIG_NAME
 # from pytorch_pretrained_bert.tokenization import BertTokenizer
 from transformers import (BertForSequenceClassification, BertTokenizer, 
-                          RobertaTokenizer, RobertaForSequenceClassification,
-                          XLMRobertaTokenizer, XLMRobertaForSequenceClassification)
+                          RobertaTokenizer, RobertaForSequenceClassification)
 from pytorch_pretrained_bert.optimization import BertAdam #, warmup_linear
 
 from torch.utils.data import DataLoader
@@ -74,7 +73,7 @@ l2_decay=args.l2
 dataset_list={'sst', 'cola'}
 # hate: 10k, mr: 6753, sst: 7792, r8: 5211
 
-total_train_epochs = 9
+total_train_epochs = 4
 dropout_rate = 0.2  #0.5 # Dropout rate (1 - keep probability).
 if cfg_ds=='sst':
     batch_size = 16 #12   
@@ -88,10 +87,8 @@ elif cfg_ds=='cola':
 
 MAX_SEQ_LENGTH = 200+gcn_embedding_dim 
 gradient_accumulation_steps = 1
-# bert_model_scale = 'bert-base-multilingual-cased'
-bert_model_scale ='xlm-roberta-base'
+bert_model_scale = 'bert-base-multilingual-cased'
 do_lower_case = False
-
 warmup_proportion = 0.1
 
 data_dir='data/dump_data'
@@ -196,9 +193,7 @@ gc.collect()
 train_classes_num, train_classes_weight = get_class_count_and_weight(train_y,len(label2idx))
 loss_weight=torch.tensor(train_classes_weight).to(device)
 
-# tokenizer = BertTokenizer.from_pretrained(bert_model_scale, do_lower_case=do_lower_case)
-tokenizer = XLMRobertaTokenizer.from_pretrained(bert_model_scale, do_lower_case=do_lower_case)
-
+tokenizer = BertTokenizer.from_pretrained(bert_model_scale, do_lower_case=do_lower_case)
 
 #%%
 

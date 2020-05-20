@@ -24,10 +24,6 @@ from sklearn.utils import shuffle
 from nltk.corpus import stopwords
 import nltk
 
-from transformers import (BertForSequenceClassification, BertTokenizer, 
-                          RobertaTokenizer, RobertaForSequenceClassification, 
-                          XLMRobertaTokenizer, XLMRobertaForSequenceClassification)
-
 random.seed(42)
 np.random.seed(42)
 
@@ -79,9 +75,8 @@ tfidf_mode='only_tf'
 # 在clean doc时是否使用bert_tokenizer分词, data3时不用更好
 cfg_use_bert_tokenizer_at_clean=True
 
-# bert_model_scale='bert-base-multilingual-cased'
+bert_model_scale='bert-base-multilingual-cased'
 # bert_model_scale='bert-large-uncased'
-bert_model_scale = 'xlm-roberta-base'
 bert_lower_case=False
 
 print('---data prepare configure---')
@@ -229,10 +224,8 @@ if cfg_use_bert_tokenizer_at_clean:
     # from pytorch_pretrained_bert import BertTokenizer
     # bert_tokenizer = BertTokenizer.from_pretrained(bert_model_scale, do_lower_case=bert_lower_case)
     from transformers import (BertForSequenceClassification, BertTokenizer, 
-                              RobertaTokenizer, RobertaForSequenceClassification,
-                              XLMRobertaTokenizer, XLMRobertaForSequenceClassification)
-    # bert_tokenizer = BertTokenizer.from_pretrained(bert_model_scale, do_lower_case=True)
-    bert_tokenizer = XLMRobertaTokenizer.from_pretrained(bert_model_scale, do_lower_case=True)
+                              RobertaTokenizer, RobertaForSequenceClassification)
+    bert_tokenizer = BertTokenizer.from_pretrained(bert_model_scale, do_lower_case=True)
 
 for doc_content in doc_content_list:
     new_doc = clean_str(doc_content)
