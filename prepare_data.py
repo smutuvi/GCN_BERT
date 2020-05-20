@@ -25,7 +25,8 @@ from nltk.corpus import stopwords
 import nltk
 
 from transformers import (BertForSequenceClassification, BertTokenizer, 
-                          RobertaTokenizer, RobertaForSequenceClassification)
+                          RobertaTokenizer, RobertaForSequenceClassification, 
+                          XLMRobertaTokenizer, XLMRobertaForSequenceClassification)
 
 random.seed(42)
 np.random.seed(42)
@@ -228,7 +229,8 @@ if cfg_use_bert_tokenizer_at_clean:
     # from pytorch_pretrained_bert import BertTokenizer
     # bert_tokenizer = BertTokenizer.from_pretrained(bert_model_scale, do_lower_case=bert_lower_case)
     from transformers import (BertForSequenceClassification, BertTokenizer, 
-                              RobertaTokenizer, RobertaForSequenceClassification)
+                              RobertaTokenizer, RobertaForSequenceClassification,
+                              XLMRobertaTokenizer, XLMRobertaForSequenceClassification)
     # bert_tokenizer = BertTokenizer.from_pretrained(bert_model_scale, do_lower_case=True)
     bert_tokenizer = XLMRobertaTokenizer.from_pretrained(bert_model_scale, do_lower_case=True)
 

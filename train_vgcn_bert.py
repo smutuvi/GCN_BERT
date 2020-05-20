@@ -29,7 +29,8 @@ from sklearn.metrics import f1_score
 from pytorch_pretrained_bert.modeling import BertModel, BertConfig, WEIGHTS_NAME, CONFIG_NAME
 # from pytorch_pretrained_bert.tokenization import BertTokenizer
 from transformers import (BertForSequenceClassification, BertTokenizer, 
-                          RobertaTokenizer, RobertaForSequenceClassification)
+                          RobertaTokenizer, RobertaForSequenceClassification,
+                          XLMRobertaTokenizer, XLMRobertaForSequenceClassification)
 from pytorch_pretrained_bert.optimization import BertAdam #, warmup_linear
 
 from torch.utils.data import DataLoader
