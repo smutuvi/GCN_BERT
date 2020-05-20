@@ -82,7 +82,7 @@ if cfg_ds=='sst':
     l2_decay = 0.01 #default
 elif cfg_ds=='cola':
     batch_size = 16 #12
-    learning_rate0 = 10e-6 #2e-5  
+    learning_rate0 = 8e-5 #2e-5  
     l2_decay = 0.01 
 
 MAX_SEQ_LENGTH = 200+gcn_embedding_dim 
