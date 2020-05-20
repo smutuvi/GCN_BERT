@@ -229,7 +229,8 @@ if cfg_use_bert_tokenizer_at_clean:
     # bert_tokenizer = BertTokenizer.from_pretrained(bert_model_scale, do_lower_case=bert_lower_case)
     from transformers import (BertForSequenceClassification, BertTokenizer, 
                               RobertaTokenizer, RobertaForSequenceClassification)
-    bert_tokenizer = BertTokenizer.from_pretrained(bert_model_scale, do_lower_case=True)
+    # bert_tokenizer = BertTokenizer.from_pretrained(bert_model_scale, do_lower_case=True)
+    bert_tokenizer = XLMRobertaTokenizer.from_pretrained(bert_model_scale, do_lower_case=True)
 
 for doc_content in doc_content_list:
     new_doc = clean_str(doc_content)
