@@ -73,7 +73,7 @@ l2_decay=args.l2
 dataset_list={'sst', 'cola'}
 # hate: 10k, mr: 6753, sst: 7792, r8: 5211
 
-total_train_epochs = 4
+total_train_epochs = 9
 dropout_rate = 0.2  #0.5 # Dropout rate (1 - keep probability).
 if cfg_ds=='sst':
     batch_size = 16 #12   
