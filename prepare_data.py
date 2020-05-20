@@ -75,8 +75,9 @@ tfidf_mode='only_tf'
 # 在clean doc时是否使用bert_tokenizer分词, data3时不用更好
 cfg_use_bert_tokenizer_at_clean=True
 
-bert_model_scale='bert-base-multilingual-cased'
+# bert_model_scale='bert-base-multilingual-cased'
 # bert_model_scale='bert-large-uncased'
+bert_model_scale = 'xlm-roberta-base'
 bert_lower_case=False
 
 print('---data prepare configure---')
