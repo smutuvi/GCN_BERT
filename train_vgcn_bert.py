@@ -88,8 +88,8 @@ elif cfg_ds=='cola':
 
 MAX_SEQ_LENGTH = 200+gcn_embedding_dim 
 gradient_accumulation_steps = 1
-# bert_model_scale = 'bert-base-multilingual-cased'
-bert_model_scale ='xlm-roberta-base'
+bert_model_scale = 'bert-base-multilingual-cased'
+# bert_model_scale ='xlm-roberta-base'
 do_lower_case = False
 
 warmup_proportion = 0.1
@@ -196,8 +196,8 @@ gc.collect()
 train_classes_num, train_classes_weight = get_class_count_and_weight(train_y,len(label2idx))
 loss_weight=torch.tensor(train_classes_weight).to(device)
 
-# tokenizer = BertTokenizer.from_pretrained(bert_model_scale, do_lower_case=do_lower_case)
-tokenizer = XLMRobertaTokenizer.from_pretrained(bert_model_scale, do_lower_case=do_lower_case)
+tokenizer = BertTokenizer.from_pretrained(bert_model_scale, do_lower_case=do_lower_case)
+# tokenizer = XLMRobertaTokenizer.from_pretrained(bert_model_scale, do_lower_case=do_lower_case)
 
 #%%
 
