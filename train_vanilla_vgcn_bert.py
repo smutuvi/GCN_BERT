@@ -81,8 +81,10 @@ elif cfg_ds=='cola':
 MAX_SEQ_LENGTH = 200 
 gcn_embedding_dim=1
 gradient_accumulation_steps = 1
-bert_model_scale = 'bert-base-uncased'
-do_lower_case = True
+# bert_model_scale = 'bert-base-uncased'
+# do_lower_case = True
+bert_model_scale = 'bert-base-multilingual-cased'
+do_lower_case = False
 warmup_proportion = 0.1
 
 data_dir='data/dump_data'
@@ -378,3 +380,18 @@ for epoch in range(start_epoch, total_train_epochs):
 print('\n**Optimization Finished!,Total spend:',(time.time() - train_start)/60.0)
 print("**Valid weighted F1: %.3f at %d epoch."%(100*perform_metrics_prev,valid_f1_best_epoch))
 print("**Test weighted F1 when valid best: %.3f"%(100*test_f1_when_valid_best))
+
+
+
+print("=========================================================")
+print("Final Results")
+print("=========================================================")
+# print(classification_report(y_pred=np.array(flat_predictions),y_true=np.array(flat_test_labels), digits=4))
+print(classification_report(y_pred=np.array(test_predictions_when_valid_best),y_true=np.array(test_labels_when_valid_best), digits=4))
+
+print("=========================================================")
+print("Confusion Matrix")
+print("=========================================================")
+# print(confusion_matrix(y_pred=np.array(flat_predictions),y_true=np.array(flat_test_labels)))
+print(confusion_matrix(y_pred=np.array(test_predictions_when_valid_best),y_true=np.array(test_labels_when_valid_best)))
+#######==========================#################==================================#########

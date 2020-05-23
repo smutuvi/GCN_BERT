@@ -199,8 +199,8 @@ def clean_str(string):
     Tokenization/string cleaning for all datasets except for SST.
     Original taken from https://github.com/yoonkim/CNN_sentence/blob/master/process_data.py
     """
-    # string = re.sub(r"[^A-Za-z0-9(),!?\'\`]", " ", string)
-    string = " ".join(re.split("[^a-zA-Z]", string.lower())).strip()
+    string = re.sub(r"[^A-Za-z0-9(),!?\'\`]", " ", string)
+    # string = " ".join(re.split("[^a-zA-Z]", string.lower())).strip()
     string = re.sub(r"\'s", " \'s", string)
     string = re.sub(r"\'ve", " \'ve", string)
     string = re.sub(r"n\'t", " n\'t", string)
