@@ -29,8 +29,7 @@ from sklearn.metrics import f1_score
 from pytorch_pretrained_bert.modeling import BertModel, BertConfig, WEIGHTS_NAME, CONFIG_NAME
 # from pytorch_pretrained_bert.tokenization import BertTokenizer
 from transformers import (BertForSequenceClassification, BertTokenizer, 
-                          RobertaTokenizer, RobertaForSequenceClassification,
-                          XLMRobertaModel, XLMRobertaTokenizer, XLMRobertaConfig)
+                          RobertaTokenizer, RobertaForSequenceClassification)
 from pytorch_pretrained_bert.optimization import BertAdam #, warmup_linear
 
 from torch.utils.data import DataLoader
@@ -197,7 +196,6 @@ train_classes_num, train_classes_weight = get_class_count_and_weight(train_y,len
 loss_weight=torch.tensor(train_classes_weight).to(device)
 
 tokenizer = BertTokenizer.from_pretrained(bert_model_scale, do_lower_case=do_lower_case)
-# tokenizer = XLMRobertaTokenizer.from_pretrained(bert_model_scale, do_lower_case=do_lower_case)
 
 #%%
 
