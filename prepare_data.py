@@ -224,8 +224,7 @@ if cfg_use_bert_tokenizer_at_clean:
     # from pytorch_pretrained_bert import BertTokenizer
     # bert_tokenizer = BertTokenizer.from_pretrained(bert_model_scale, do_lower_case=bert_lower_case)
     from transformers import (BertForSequenceClassification, BertTokenizer, 
-                            RobertaTokenizer, RobertaForSequenceClassification,
-                            XLMRobertaModel, XLMRobertaTokenizer, XLMRobertaConfig)
+                            RobertaTokenizer, RobertaForSequenceClassification)
     bert_tokenizer = BertTokenizer.from_pretrained(bert_model_scale, do_lower_case=True)
 
 for doc_content in doc_content_list:
