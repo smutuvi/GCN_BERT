@@ -23,7 +23,7 @@ import torch.nn.functional as F
 import torch.nn as nn
 
 # from tqdm import tqdm, trange
-from sklearn.metrics import classification_report, confusion_matrix
+from sklearn.metrics import classification_report, roc_curve, confusion_matrix, f1_score, roc_auc_score
 from sklearn.metrics import f1_score
 
 from pytorch_pretrained_bert.modeling import BertModel, BertConfig, WEIGHTS_NAME, CONFIG_NAME
@@ -35,6 +35,8 @@ from pytorch_pretrained_bert.optimization import BertAdam #, warmup_linear
 from torch.utils.data import DataLoader
 
 from utils import *
+from matplotlib import pyplot
+import matplotlib.pyplot as plt
 
 import random
 random.seed(42)
@@ -43,11 +45,21 @@ torch.manual_seed(42)
 torch.backends.cudnn.deterministic = True
 torch.backends.cudnn.benchmark = False 
 
+
 cuda_yes = torch.cuda.is_available()
 if cuda_yes:
     torch.cuda.manual_seed_all(42)
 device = torch.device("cuda:0" if cuda_yes else "cpu")
 
+def plot_roc_curve(fpr, tpr):
+    plt.plot(fpr, tpr, color='orange', label='ROC')
+    plt.plot([0, 1], [0, 1], color='darkblue', linestyle='--')
+    plt.xlabel('False Positive Rate')
+    plt.ylabel('True Positive Rate')
+    plt.title('Receiver Operating Characteristic (ROC) Curve')
+    plt.legend()
+    plt.show()
+    
 #%%
 '''
 Configuration
@@ -73,7 +85,7 @@ l2_decay=args.l2
 dataset_list={'sst', 'cola'}
 # hate: 10k, mr: 6753, sst: 7792, r8: 5211
 
-total_train_epochs = 10
+total_train_epochs = 9
 dropout_rate = 0.2  #0.5 # Dropout rate (1 - keep probability).
 if cfg_ds=='sst':
     batch_size = 16 #12   
@@ -81,13 +93,13 @@ if cfg_ds=='sst':
     # l2_decay = 0.001
     l2_decay = 0.01 #default
 elif cfg_ds=='cola':
-    batch_size = 16 #12
-    learning_rate0 = 2e-5 #8e-6 #2e-5  
+    batch_size = 8 #12
+    learning_rate0 = 8e-6 #2e-5  
     l2_decay = 0.01 
 
-MAX_SEQ_LENGTH = 350+gcn_embedding_dim 
+MAX_SEQ_LENGTH = 200+gcn_embedding_dim 
 gradient_accumulation_steps = 1
-bert_model_scale = 'bert-base-multilingual-cased'
+bert_model_scale = 'bert-base-cased'
 do_lower_case = False
 warmup_proportion = 0.1
 
@@ -438,11 +450,16 @@ print("**Test weighted F1 when valid best: %.3f"%(100*test_f1_when_valid_best))
 # flat_predictions = np.array(flat_predictions).reshape(-1)
 # flat_test_labels = np.array(flat_test_labels).reshape(-1)
 
+
+
 print("=========================================================")
 print("Final Results")
 print("=========================================================")
 # print(classification_report(y_pred=np.array(flat_predictions),y_true=np.array(flat_test_labels), digits=4))
 print(classification_report(y_pred=np.array(test_predictions_when_valid_best),y_true=np.array(test_labels_when_valid_best), digits=4))
+
+auc = roc_auc_score(test_predictions_when_valid_best,test_labels_when_valid_best)
+print('AUC: %.4f' % auc)
 
 print("=========================================================")
 print("Confusion Matrix")
@@ -450,3 +467,6 @@ print("=========================================================")
 # print(confusion_matrix(y_pred=np.array(flat_predictions),y_true=np.array(flat_test_labels)))
 print(confusion_matrix(y_pred=np.array(test_predictions_when_valid_best),y_true=np.array(test_labels_when_valid_best)))
 #######==========================#################==================================#########
+
+fpr, tpr, thresholds = roc_curve(test_predictions_when_valid_best,test_labels_when_valid_best)
+plot_roc_curve(fpr, tpr)
