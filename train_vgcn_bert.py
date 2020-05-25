@@ -97,9 +97,9 @@ elif cfg_ds=='cola':
     learning_rate0 = 8e-6 #2e-5  
     l2_decay = 0.01 
 
-MAX_SEQ_LENGTH = 200+gcn_embedding_dim 
+MAX_SEQ_LENGTH = 256+gcn_embedding_dim 
 gradient_accumulation_steps = 1
-bert_model_scale = 'bert-base-cased'
+bert_model_scale = 'bert-base-multilingual-cased'
 do_lower_case = False
 warmup_proportion = 0.1
 
@@ -111,8 +111,8 @@ if not os.path.exists(output_dir):
 perform_metrics_str=['weighted avg','f1-score']
 
 # cfg_add_linear_mapping_term=False
-cfg_vocab_adj='pmi'
-# cfg_vocab_adj='all'
+# cfg_vocab_adj='pmi'
+cfg_vocab_adj='all'
 # cfg_vocab_adj='tf'
 cfg_adj_npmi_threshold=0.2
 cfg_adj_tf_threshold=0
