@@ -327,7 +327,7 @@ def evaluate(model, gcn_adj_list,predict_dataloader, batch_size, epoch_th, datas
     print('Epoch : %d, %s: %.3f Acc : %.3f on %s, Spend:%.3f minutes for evaluation'
         % (epoch_th, ' '.join(perform_metrics_str), 100*f1_metrics, 100.*ev_acc, dataset_name,(end-start)/60.0))
     print('--------------------------------------------------------------')
-    return ev_loss, ev_acc, f1_metrics, predict_out, all_label_ids
+    return ev_loss, ev_acc, f1_metrics, predict_out, all_label_ids, predict_proba_out
 
 
 #%%
@@ -370,6 +370,7 @@ all_loss_list={'train':[],'valid':[],'test':[]}
 all_f1_list={'train':[],'valid':[],'test':[]}
 
 all_predictions = {'train':[],'valid':[],'test':[]}
+all_predictions_proba = {'train':[],'valid':[],'test':[]}
 all_test_labels = {'train':[],'valid':[],'test':[]}
 
 for epoch in range(start_epoch, total_train_epochs):
@@ -414,7 +415,7 @@ for epoch in range(start_epoch, total_train_epochs):
 
     print('--------------------------------------------------------------')
     valid_loss,valid_acc,perform_metrics,_,_ = evaluate(model, gcn_adj_list, valid_dataloader, batch_size, epoch, 'Valid_set')
-    test_loss,_,test_f1, predictions, test_labels = evaluate(model, gcn_adj_list, test_dataloader, batch_size, epoch, 'Test_set')
+    test_loss,_,test_f1, predictions, test_labels, predictions_proba = evaluate(model, gcn_adj_list, test_dataloader, batch_size, epoch, 'Test_set')
     
     all_loss_list['train'].append(tr_loss)
     all_loss_list['valid'].append(valid_loss)
@@ -423,6 +424,7 @@ for epoch in range(start_epoch, total_train_epochs):
     all_f1_list['test'].append(test_f1)
 
     all_predictions['test'].extend(predictions)
+    all_predictions_proba['test'].extend(predictions_proba)
     all_test_labels['test'].extend(test_labels)
 
     print("Epoch:{} completed, Total Train Loss:{}, Valid Loss:{}, Spend {}m ".format(epoch, tr_loss, valid_loss, (time.time() - train_start)/60.0))
