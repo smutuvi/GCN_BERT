@@ -385,6 +385,8 @@ for epoch in range(start_epoch, total_train_epochs):
         if cfg_loss_criterion=='mse':
             if do_softmax_before_mse:
                 logits=F.softmax(logits,-1)
+                # logits = torch.argmax(F.log_softmax(logits, dim=0), dim=1)
+                y_pred_probs = F.log_softmax(logits, dim=0)
             loss = F.mse_loss(logits, y_prob)
         else:
             if loss_weight is None:
@@ -471,5 +473,5 @@ print(classification_report(y_pred=np.array(test_predictions_when_valid_best),y_
 # fpr, tpr, thresholds = roc_curve(test_predictions_when_valid_best,test_labels_when_valid_best)
 # plot_roc_curve(fpr, tpr)
 
-print("Preds: ",len(test_predictions_when_valid_best))
-print("Labels: ",len(test_labels_when_valid_best))
+print("Preds: ",test_predictions_when_valid_best[:10])
+print("Labels: ", test_labels_when_valid_best[:10])
