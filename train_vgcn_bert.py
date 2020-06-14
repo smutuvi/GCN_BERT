@@ -391,8 +391,8 @@ for epoch in range(start_epoch, total_train_epochs):
 
         if cfg_loss_criterion=='mse':
             if do_softmax_before_mse:
-                # logits=F.softmax(logits,-1)
-                logits = torch.argmax(F.log_softmax(logits, dim=0), dim=1)
+                logits=F.softmax(logits,-1)
+                # logits = torch.argmax(F.log_softmax(logits, dim=0), dim=1)
                 y_pred_probs = F.log_softmax(logits, dim=0)
             loss = F.mse_loss(logits, y_prob)
         else:
