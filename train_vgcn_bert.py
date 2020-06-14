@@ -85,7 +85,7 @@ l2_decay=args.l2
 dataset_list={'sst', 'cola'}
 # hate: 10k, mr: 6753, sst: 7792, r8: 5211
 
-total_train_epochs = 2
+total_train_epochs = 1
 dropout_rate = 0.2  #0.5 # Dropout rate (1 - keep probability).
 if cfg_ds=='sst':
     batch_size = 8 #12   
@@ -468,5 +468,8 @@ print("=========================================================")
 print(confusion_matrix(y_pred=np.array(test_predictions_when_valid_best),y_true=np.array(test_labels_when_valid_best)))
 #######==========================#################==================================#########
 
-fpr, tpr, thresholds = roc_curve(test_predictions_when_valid_best,test_labels_when_valid_best)
-plot_roc_curve(fpr, tpr)
+# fpr, tpr, thresholds = roc_curve(test_predictions_when_valid_best,test_labels_when_valid_best)
+# plot_roc_curve(fpr, tpr)
+
+print("Preds: ",len(test_predictions_when_valid_best))
+print("Labels: ",len(test_labels_when_valid_best))
