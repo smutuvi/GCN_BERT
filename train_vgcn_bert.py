@@ -289,7 +289,9 @@ def evaluate(model, gcn_adj_list,predict_dataloader, batch_size, epoch_th, datas
 
             if cfg_loss_criterion=='mse':
                 if do_softmax_before_mse:
-                    logits=F.softmax(logits,-1)
+                    # logits=F.softmax(logits,-1)
+                    logits = torch.argmax(F.log_softmax(logits, dim=0), dim=1)
+                    y_pred_probs = F.log_softmax(logits, dim=0)
                 loss = F.mse_loss(logits, y_prob)
             else:
                 if loss_weight is None:
@@ -300,6 +302,7 @@ def evaluate(model, gcn_adj_list,predict_dataloader, batch_size, epoch_th, datas
 
             _, predicted = torch.max(logits, -1)
             predict_out.extend(predicted.tolist())
+            predict_proba_out.extend(y_pred_probs.tolist())
             all_label_ids.extend(label_ids.tolist())
             eval_accuracy=predicted.eq(label_ids).sum().item()
             total += len(label_ids)
@@ -309,6 +312,7 @@ def evaluate(model, gcn_adj_list,predict_dataloader, batch_size, epoch_th, datas
             np.array(predict_out).reshape(-1), average='weighted')
         print("Report:\n"+classification_report(np.array(all_label_ids).reshape(-1),
             np.array(predict_out).reshape(-1),digits=4))
+        print("========>", predict_proba_out[:10])
 
     ev_acc = correct/total
     end = time.time()
@@ -384,8 +388,8 @@ for epoch in range(start_epoch, total_train_epochs):
 
         if cfg_loss_criterion=='mse':
             if do_softmax_before_mse:
-                logits=F.softmax(logits,-1)
-                # logits = torch.argmax(F.log_softmax(logits, dim=0), dim=1)
+                # logits=F.softmax(logits,-1)
+                logits = torch.argmax(F.log_softmax(logits, dim=0), dim=1)
                 y_pred_probs = F.log_softmax(logits, dim=0)
             loss = F.mse_loss(logits, y_prob)
         else:
@@ -435,6 +439,7 @@ for epoch in range(start_epoch, total_train_epochs):
 
         test_predictions_when_valid_best=predictions
         test_labels_when_valid_best=test_labels
+        test_predictions_proba_when_valid_best = y_pred_probs
 
         
 
@@ -475,3 +480,4 @@ print(classification_report(y_pred=np.array(test_predictions_when_valid_best),y_
 
 print("Preds: ",test_predictions_when_valid_best[:10])
 print("Labels: ", test_labels_when_valid_best[:10])
+print("Preds_Proba: ", test_predictions_proba_when_valid_best[:10])
