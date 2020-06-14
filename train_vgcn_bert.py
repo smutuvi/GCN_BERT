@@ -444,9 +444,8 @@ for epoch in range(start_epoch, total_train_epochs):
 
         test_predictions_when_valid_best=predictions
         test_labels_when_valid_best=test_labels
-        test_predictions_proba_when_valid_best = predictions_proba
-        # test_predictions_proba_when_valid_best = np.array(predictions_proba)[:, 1]
-        test_predictions_proba_when_valid_best = np.max(test_predictions_proba_when_valid_best, axis=1)
+        test_predictions_proba_when_valid_best = np.array(predictions_proba)[:, 1]
+        # test_predictions_proba_when_valid_best = np.max(test_predictions_proba_when_valid_best, axis=1)
 
 
 print('\n**Optimization Finished!,Total spend:',(time.time() - train_start)/60.0)
@@ -487,7 +486,6 @@ print(classification_report(y_pred=np.array(test_predictions_when_valid_best),y_
 print("Preds: ",test_predictions_when_valid_best[:20])
 print("Labels: ", test_labels_when_valid_best[:20])
 print("Preds_Proba: ", test_predictions_proba_when_valid_best[:10])
-print("Preds_Proba_all: ", test_predictions_proba_when_valid_best_all[:10])
 
 # testy = test_labels_when_valid_best
 # y_pred = test_predictions_when_valid_best
