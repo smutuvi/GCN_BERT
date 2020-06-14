@@ -14,6 +14,7 @@
 import os
 import time
 import numpy as np
+import pandas as pd
 import pickle as pkl
 import argparse
 import gc
@@ -493,8 +494,6 @@ testy = pd.DataFrame(testy)
 y_pred = pd.DataFrame(y_pred)
 y_pred_proba = pd.DataFrame(y_pred_proba)
 
-
-import pandas as pd
 
 df_concat_classifier=pd.concat([testy, y_pred, y_pred_proba], axis=1, sort=False, ignore_index=True)
 # print(df_concat_classifier.head())
