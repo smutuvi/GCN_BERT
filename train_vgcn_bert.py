@@ -414,7 +414,7 @@ for epoch in range(start_epoch, total_train_epochs):
             print("Epoch:{}-{}/{}, Train {} Loss: {}, Cumulated time: {}m ".format(epoch, step, len(train_dataloader), cfg_loss_criterion,loss.item(),(time.time() - train_start)/60.0))
 
     print('--------------------------------------------------------------')
-    valid_loss,valid_acc,perform_metrics,_,_ = evaluate(model, gcn_adj_list, valid_dataloader, batch_size, epoch, 'Valid_set')
+    valid_loss,valid_acc,perform_metrics,_,_,_ = evaluate(model, gcn_adj_list, valid_dataloader, batch_size, epoch, 'Valid_set')
     test_loss,_,test_f1, predictions, test_labels, predictions_proba = evaluate(model, gcn_adj_list, test_dataloader, batch_size, epoch, 'Test_set')
     
     all_loss_list['train'].append(tr_loss)
