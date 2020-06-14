@@ -458,15 +458,15 @@ print("=========================================================")
 # print(classification_report(y_pred=np.array(flat_predictions),y_true=np.array(flat_test_labels), digits=4))
 print(classification_report(y_pred=np.array(test_predictions_when_valid_best),y_true=np.array(test_labels_when_valid_best), digits=4))
 
-auc = roc_auc_score(test_predictions_when_valid_best,test_labels_when_valid_best)
-print('AUC: %.4f' % auc)
+# auc = roc_auc_score(test_predictions_when_valid_best,test_labels_when_valid_best)
+# print('AUC: %.4f' % auc)
 
-print("=========================================================")
-print("Confusion Matrix")
-print("=========================================================")
-# print(confusion_matrix(y_pred=np.array(flat_predictions),y_true=np.array(flat_test_labels)))
-print(confusion_matrix(y_pred=np.array(test_predictions_when_valid_best),y_true=np.array(test_labels_when_valid_best)))
-#######==========================#################==================================#########
+# print("=========================================================")
+# print("Confusion Matrix")
+# print("=========================================================")
+# # print(confusion_matrix(y_pred=np.array(flat_predictions),y_true=np.array(flat_test_labels)))
+# print(confusion_matrix(y_pred=np.array(test_predictions_when_valid_best),y_true=np.array(test_labels_when_valid_best)))
+# #######==========================#################==================================#########
 
 # fpr, tpr, thresholds = roc_curve(test_predictions_when_valid_best,test_labels_when_valid_best)
 # plot_roc_curve(fpr, tpr)
