@@ -86,7 +86,7 @@ l2_decay=args.l2
 dataset_list={'sst', 'cola'}
 # hate: 10k, mr: 6753, sst: 7792, r8: 5211
 
-total_train_epochs = 1
+total_train_epochs = 9
 dropout_rate = 0.2  #0.5 # Dropout rate (1 - keep probability).
 if cfg_ds=='sst':
     batch_size = 8 #12   
@@ -502,4 +502,4 @@ df_concat_classifier.columns = ['true_labels','predicted_labels','pred_proba']
 print('-'*20, "after concatenation", '-'*20)
 print(df_concat_classifier.head())
 
-df_concat_classifier.to_csv('vgcn_bert.csv', sep='\t',index=False)
+df_concat_classifier.to_csv('vgcn_bert.csv', sep='\t', index=False)
