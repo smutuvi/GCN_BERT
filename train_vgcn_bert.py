@@ -489,6 +489,7 @@ testy = test_labels_when_valid_best
 y_pred = test_predictions_when_valid_best
 y_pred_proba = test_predictions_proba_when_valid_best
 
+import pandas as pd
 df_concat_classifier=pd.concat([testy, y_pred, y_pred_proba], axis=1, sort=False, ignore_index=True)
 # print(df_concat_classifier.head())
 df_concat_classifier.columns = ['true_labels','predicted_labels','pred_proba']
