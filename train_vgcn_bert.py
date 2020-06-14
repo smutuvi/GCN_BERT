@@ -495,9 +495,9 @@ y_pred = pd.DataFrame(y_pred)
 y_pred_proba = pd.DataFrame(y_pred_proba)
 
 # print(testy.head())
-df_concat_classifier=pd.concat([testy, y_pred, y_pred_proba], axis=1, sort=False, ignore_index=True)
+df_concat_classifier=pd.concat([testy, y_pred, y_pred_proba], axis=1, sort=False, index=False)
 print(df_concat_classifier.head())
-df_concat_classifier.columns = ['id','true_labels','predicted_labels','pred_proba']
+df_concat_classifier.columns = ['true_labels','predicted_labels','pred_proba']
 print('-'*20, "after concatenation", '-'*20)
 print(df_concat_classifier.head())
 
