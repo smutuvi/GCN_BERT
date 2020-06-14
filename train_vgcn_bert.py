@@ -275,6 +275,7 @@ def evaluate(model, gcn_adj_list,predict_dataloader, batch_size, epoch_th, datas
     # print("***** Running prediction *****")
     model.eval()
     predict_out = []
+    predict_proba_out = []
     all_label_ids = []
     ev_loss=0
     total = 0
