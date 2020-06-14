@@ -302,7 +302,7 @@ def evaluate(model, gcn_adj_list,predict_dataloader, batch_size, epoch_th, datas
             ev_loss+=loss.item()
 
             # _, predicted = torch.max(logits, -1)
-            _, predicted = torch.argmax(F.log_softmax(logits, dim=0), dim=1)
+            predicted = torch.argmax(F.log_softmax(logits, dim=0), dim=1)
             y_pred_probs = F.log_softmax(logits, dim=0)
             predict_out.extend(predicted.tolist())
             predict_proba_out.extend(y_pred_probs.tolist())
