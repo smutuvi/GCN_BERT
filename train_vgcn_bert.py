@@ -290,8 +290,8 @@ def evaluate(model, gcn_adj_list,predict_dataloader, batch_size, epoch_th, datas
 
             if cfg_loss_criterion=='mse':
                 if do_softmax_before_mse:
-                    logits=F.softmax(logits,-1)
-                    # logits = torch.argmax(F.log_softmax(logits, dim=0), dim=1)
+                    # logits=F.softmax(logits,-1)
+                    logits = torch.argmax(F.log_softmax(logits, dim=0), dim=1)
                     
                 loss = F.mse_loss(logits, y_prob)
             else:
@@ -301,7 +301,8 @@ def evaluate(model, gcn_adj_list,predict_dataloader, batch_size, epoch_th, datas
                     loss = F.cross_entropy(logits.view(-1, num_classes), label_ids)
             ev_loss+=loss.item()
 
-            _, predicted = torch.max(logits, -1)
+            # _, predicted = torch.max(logits, -1)
+            _, predicted = torch.argmax(F.log_softmax(logits, dim=0), dim=1)
             y_pred_probs = F.log_softmax(logits, dim=0)
             predict_out.extend(predicted.tolist())
             predict_proba_out.extend(y_pred_probs.tolist())
