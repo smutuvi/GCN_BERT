@@ -484,3 +484,15 @@ print(classification_report(y_pred=np.array(test_predictions_when_valid_best),y_
 print("Preds: ",test_predictions_when_valid_best[:20])
 print("Labels: ", test_labels_when_valid_best[:20])
 print("Preds_Proba: ", test_predictions_proba_when_valid_best[:10])
+
+testy = test_labels_when_valid_best
+y_pred = test_predictions_when_valid_best
+y_pred_proba = test_predictions_proba_when_valid_best
+
+df_concat_classifier=pd.concat([testy, y_pred, y_pred_proba], axis=1, sort=False, ignore_index=True)
+# print(df_concat_classifier.head())
+df_concat_classifier.columns = ['true_labels','predicted_labels','pred_proba']
+# print('-'*20, "after concatenation", '-'*20)
+# print(df_concat_classifier.head())
+
+df_concat_classifier.to_csv('vgcn_bert.csv', sep='\t',index=False)
