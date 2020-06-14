@@ -292,7 +292,7 @@ def evaluate(model, gcn_adj_list,predict_dataloader, batch_size, epoch_th, datas
                 if do_softmax_before_mse:
                     # logits=F.softmax(logits,-1)
                     logits = torch.argmax(F.log_softmax(logits, dim=0), dim=1)
-                    y_pred_probs = F.log_softmax(logits, dim=0)
+                    
                 loss = F.mse_loss(logits, y_prob)
             else:
                 if loss_weight is None:
@@ -302,6 +302,7 @@ def evaluate(model, gcn_adj_list,predict_dataloader, batch_size, epoch_th, datas
             ev_loss+=loss.item()
 
             _, predicted = torch.max(logits, -1)
+            y_pred_probs = F.log_softmax(logits, dim=0)
             predict_out.extend(predicted.tolist())
             predict_proba_out.extend(y_pred_probs.tolist())
             all_label_ids.extend(label_ids.tolist())
