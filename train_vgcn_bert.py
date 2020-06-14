@@ -443,9 +443,8 @@ for epoch in range(start_epoch, total_train_epochs):
 
         test_predictions_when_valid_best=predictions
         test_labels_when_valid_best=test_labels
-        test_predictions_proba_when_valid_best = y_pred_probs
+        test_predictions_proba_when_valid_best = predictions_proba
 
-        
 
 print('\n**Optimization Finished!,Total spend:',(time.time() - train_start)/60.0)
 print("**Valid weighted F1: %.3f at %d epoch."%(100*perform_metrics_prev,valid_f1_best_epoch))
