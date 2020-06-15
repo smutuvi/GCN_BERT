@@ -86,7 +86,7 @@ l2_decay=args.l2
 dataset_list={'sst', 'cola'}
 # hate: 10k, mr: 6753, sst: 7792, r8: 5211
 
-total_train_epochs = 5
+total_train_epochs = 9
 dropout_rate = 0.2  #0.5 # Dropout rate (1 - keep probability).
 if cfg_ds=='sst':
     batch_size = 8 #12   
@@ -483,15 +483,18 @@ print(classification_report(y_pred=np.array(test_predictions_when_valid_best),y_
 
 # fpr, tpr, thresholds = roc_curve(test_predictions_when_valid_best,test_labels_when_valid_best)
 # plot_roc_curve(fpr, tpr)
+y_pred=np.array(test_predictions_when_valid_best)
+y_pred_proba=np.array(test_predictions_proba_when_valid_best) 
+testy=np.array(test_labels_when_valid_best)
 
-print("Preds: ",test_predictions_when_valid_best[:20])
-print("Labels: ", test_labels_when_valid_best[:20])
-print("Preds_Proba: ", test_predictions_proba_when_valid_best[:10])
-print("Preds_Proba_all: ", test_predictions_proba_when_valid_best_all[:10])
+print("Preds: ",y_pred[:20])
+print("Labels: ", testy[:20])
+print("Preds_Proba: ", y_pred_proba[:10])
+# print("Preds_Proba_all: ", test_predictions_proba_when_valid_best_all[:10])
 
-testy = test_labels_when_valid_best
-y_pred = test_predictions_when_valid_best
-y_pred_proba = test_predictions_proba_when_valid_best
+# testy = test_labels_when_valid_best
+# y_pred = test_predictions_when_valid_best
+# y_pred_proba = test_predictions_proba_when_valid_best
 
 testy = pd.DataFrame(testy)
 y_pred = pd.DataFrame(y_pred)
