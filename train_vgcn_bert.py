@@ -486,8 +486,8 @@ print(confusion_matrix(y_pred=np.array(test_predictions_when_valid_best),y_true=
 #######==========================#################==================================#########
 
 
-fpr, tpr, thresholds = roc_curve(y_pred_proba, y_true)
-plot_roc_curve(fpr, tpr)
+# fpr, tpr, thresholds = roc_curve(y_pred_proba, y_true)
+# plot_roc_curve(fpr, tpr)
 
 # y_pred=np.array(test_predictions_when_valid_best)
 # y_pred_proba=np.array(test_predictions_proba_when_valid_best) 
