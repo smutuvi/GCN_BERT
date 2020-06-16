@@ -471,40 +471,41 @@ print("=========================================================")
 # print(classification_report(y_pred=np.array(flat_predictions),y_true=np.array(flat_test_labels), digits=4))
 print(classification_report(y_pred=np.array(test_predictions_when_valid_best),y_true=np.array(test_labels_when_valid_best), digits=4))
 
-# auc = roc_auc_score(test_predictions_when_valid_best,test_labels_when_valid_best)
-# print('AUC: %.4f' % auc)
+auc = roc_auc_score(test_predictions_when_valid_best,test_labels_when_valid_best)
+print('AUC: %.4f' % auc)
 
-# print("=========================================================")
-# print("Confusion Matrix")
-# print("=========================================================")
-# # print(confusion_matrix(y_pred=np.array(flat_predictions),y_true=np.array(flat_test_labels)))
-# print(confusion_matrix(y_pred=np.array(test_predictions_when_valid_best),y_true=np.array(test_labels_when_valid_best)))
-# #######==========================#################==================================#########
+print("=========================================================")
+print("Confusion Matrix")
+print("=========================================================")
+# print(confusion_matrix(y_pred=np.array(flat_predictions),y_true=np.array(flat_test_labels)))
+print(confusion_matrix(y_pred=np.array(test_predictions_when_valid_best),y_true=np.array(test_labels_when_valid_best)))
+#######==========================#################==================================#########
 
-# fpr, tpr, thresholds = roc_curve(test_predictions_when_valid_best,test_labels_when_valid_best)
-# plot_roc_curve(fpr, tpr)
-y_pred=np.array(test_predictions_when_valid_best)
-y_pred_proba=np.array(test_predictions_proba_when_valid_best) 
-testy=np.array(test_labels_when_valid_best)
+fpr, tpr, thresholds = roc_curve(test_predictions_proba_when_valid_best,test_labels_when_valid_best)
+plot_roc_curve(fpr, tpr)
 
-print("Preds: ",y_pred[:20])
-print("Labels: ", testy[:20])
-print("Preds_Proba: ", y_pred_proba[:10])
-# print("Preds_Proba_all: ", test_predictions_proba_when_valid_best_all[:10])
+# y_pred=np.array(test_predictions_when_valid_best)
+# y_pred_proba=np.array(test_predictions_proba_when_valid_best) 
+# testy=np.array(test_labels_when_valid_best)
 
-# testy = test_labels_when_valid_best
-# y_pred = test_predictions_when_valid_best
-# y_pred_proba = test_predictions_proba_when_valid_best
+# print("Preds: ",y_pred[:20])
+# print("Labels: ", testy[:20])
+# print("Preds_Proba: ", y_pred_proba[:10])
+# # print("Preds_Proba_all: ", test_predictions_proba_when_valid_best_all[:10])
 
-testy = pd.DataFrame(testy)
-y_pred = pd.DataFrame(y_pred)
-y_pred_proba = pd.DataFrame(y_pred_proba)
+# # testy = test_labels_when_valid_best
+# # y_pred = test_predictions_when_valid_best
+# # y_pred_proba = test_predictions_proba_when_valid_best
 
-# print(testy.head())
-df_concat_classifier=pd.concat([testy, y_pred, y_pred_proba], axis=1, sort=False, ignore_index=True)
+# testy = pd.DataFrame(testy)
+# y_pred = pd.DataFrame(y_pred)
+# y_pred_proba = pd.DataFrame(y_pred_proba)
+
+# # print(testy.head())
+# df_concat_classifier=pd.concat([testy, y_pred, y_pred_proba], axis=1, sort=False, ignore_index=True)
+# # print(df_concat_classifier.head())
+# df_concat_classifier.columns = ['true_labels','predicted_labels','pred_proba']
+# print('-'*20, "after concatenation", '-'*20)
 # print(df_concat_classifier.head())
-df_concat_classifier.columns = ['true_labels','predicted_labels','pred_proba']
-print('-'*20, "after concatenation", '-'*20)
-print(df_concat_classifier.head())
 
-df_concat_classifier.to_csv('vgcn_bert.csv', sep='\t', index=False)
+# df_concat_classifier.to_csv('vgcn_bert.csv', sep='\t', index=False)
