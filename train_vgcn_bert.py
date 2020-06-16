@@ -507,15 +507,15 @@ print(type(y_pred_proba))
 # # y_pred = test_predictions_when_valid_best
 # # y_pred_proba = test_predictions_proba_when_valid_best
 
-# testy = pd.DataFrame(testy)
-# y_pred = pd.DataFrame(y_pred)
-# y_pred_proba = pd.DataFrame(y_pred_proba)
+testy = pd.DataFrame(y_true.tolist())
+y_pred = pd.DataFrame(y_pred.tolist())
+y_pred_proba = pd.DataFrame(y_pred_proba.tolist())
 
-# # print(testy.head())
-# df_concat_classifier=pd.concat([testy, y_pred, y_pred_proba], axis=1, sort=False, ignore_index=True)
-# # print(df_concat_classifier.head())
-# df_concat_classifier.columns = ['true_labels','predicted_labels','pred_proba']
-# print('-'*20, "after concatenation", '-'*20)
+# print(testy.head())
+df_concat_classifier=pd.concat([testy, y_pred, y_pred_proba], axis=1, sort=False, ignore_index=True)
 # print(df_concat_classifier.head())
+df_concat_classifier.columns = ['true_labels','predicted_labels','pred_proba']
+print('-'*20, "after concatenation", '-'*20)
+print(df_concat_classifier.head())
 
-# df_concat_classifier.to_csv('vgcn_bert.csv', sep='\t', index=False)
+df_concat_classifier.to_csv('vgcn_bert.csv', sep='\t', index=False)
