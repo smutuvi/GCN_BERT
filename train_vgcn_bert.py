@@ -494,7 +494,7 @@ print(confusion_matrix(y_pred=np.array(test_predictions_when_valid_best),y_true=
 # testy=np.array(test_labels_when_valid_best)
 
 
-print("Labels: ", testy[:20])
+print("Labels: ", y_true[:20])
 print("Preds: ",y_pred[:20])
 print("Preds_Proba: ", y_pred_proba[:10])
 # print("Preds_Proba_all: ", test_predictions_proba_when_valid_best_all[:10])
