@@ -144,7 +144,7 @@ elif cfg_ds=='cola':
     train_valid_df = shuffle(train_valid_df)
     # use dev set as test set, because we can not get the ground true label of the real test set.
     test_df = pd.read_csv('data/CoLA/test.tsv', encoding='utf-8', header=None, sep='\t')
-    test_df = shuffle(test_df)
+    test_df = test_df
     train_valid_size=train_valid_df[1].count()
     valid_size=int(train_valid_size*valid_data_taux)
     train_size=train_valid_size-valid_size
