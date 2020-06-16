@@ -481,17 +481,26 @@ print("=========================================================")
 print(confusion_matrix(y_pred=np.array(test_predictions_when_valid_best),y_true=np.array(test_labels_when_valid_best)))
 #######==========================#################==================================#########
 
-fpr, tpr, thresholds = roc_curve(y_pred_proba=np.array(test_predictions_proba_when_valid_best),y_true=np.array(test_labels_when_valid_best))
+y_pred=np.array(test_predictions_when_valid_best)
+y_pred_proba=np.array(test_predictions_proba_when_valid_best)
+y_true=np.array(test_labels_when_valid_best)
+
+fpr, tpr, thresholds = roc_curve(y_pred_proba, y_true)
 plot_roc_curve(fpr, tpr)
 
 # y_pred=np.array(test_predictions_when_valid_best)
 # y_pred_proba=np.array(test_predictions_proba_when_valid_best) 
 # testy=np.array(test_labels_when_valid_best)
 
-# print("Preds: ",y_pred[:20])
-# print("Labels: ", testy[:20])
-# print("Preds_Proba: ", y_pred_proba[:10])
-# # print("Preds_Proba_all: ", test_predictions_proba_when_valid_best_all[:10])
+
+print("Labels: ", testy[:20])
+print("Preds: ",y_pred[:20])
+print("Preds_Proba: ", y_pred_proba[:10])
+# print("Preds_Proba_all: ", test_predictions_proba_when_valid_best_all[:10])
+
+print(type(y_true))
+print(type(y_pred))
+print(type(y_pred_proba))
 
 # # testy = test_labels_when_valid_best
 # # y_pred = test_predictions_when_valid_best
