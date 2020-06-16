@@ -518,4 +518,4 @@ df_concat_classifier.columns = ['true_labels','predicted_labels','pred_proba']
 print('-'*20, "after concatenation", '-'*20)
 print(df_concat_classifier.head())
 
-df_concat_classifier.to_csv('vgcn_bert.csv', sep='\t', index=False)
+df_concat_classifier.to_csv('/kaggle/working/vgcn_bert.csv', sep='\t', index=False)
