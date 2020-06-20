@@ -100,8 +100,8 @@ def del_http_user_tokenize(tweet):
     url_regex = (r'http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|'
         r'[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+')
     mention_regex = r'@[\w\-]+'
-    # tweet = re.sub(space_pattern, ' ', tweet)
-    # tweet = re.sub(url_regex, '', tweet)
+    tweet = re.sub(space_pattern, ' ', tweet)
+    tweet = re.sub(url_regex, '', tweet)
     tweet = re.sub(mention_regex, '', tweet)
     return tweet
 
@@ -160,7 +160,8 @@ elif cfg_ds=='cola':
 #%%
 doc_content_list=[]
 for t in corpus:
-    doc_content_list.append(del_http_user_tokenize(t))
+    
+    doc_content_list.append(t)
 max_len_seq=0
 max_len_seq_idx=-1
 min_len_seq=1000
