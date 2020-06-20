@@ -160,8 +160,7 @@ elif cfg_ds=='cola':
 #%%
 doc_content_list=[]
 for t in corpus:
-    # doc_content_list.append(del_http_user_tokenize(t))
-    doc_content_list.append(t)
+    doc_content_list.append(del_http_user_tokenize(t))
 max_len_seq=0
 max_len_seq_idx=-1
 min_len_seq=1000
