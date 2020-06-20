@@ -162,13 +162,14 @@ doc_content_list=[]
 for t in corpus:
     
     doc_content_list.append(t)
+
 max_len_seq=0
 max_len_seq_idx=-1
 min_len_seq=1000
 min_len_seq_idx=-1
 sen_len_list=[]
 for i,seq in enumerate(doc_content_list):
-    seq=seq.split()
+    # seq=seq.split()
     sen_len_list.append(len(seq))
     if len(seq)<min_len_seq:
         min_len_seq=len(seq)
