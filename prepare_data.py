@@ -100,8 +100,8 @@ def del_http_user_tokenize(tweet):
     url_regex = (r'http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|'
         r'[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+')
     mention_regex = r'@[\w\-]+'
-    tweet = re.sub(space_pattern, ' ', tweet)
-    tweet = re.sub(url_regex, '', tweet)
+    # tweet = re.sub(space_pattern, ' ', tweet)
+    # tweet = re.sub(url_regex, '', tweet)
     tweet = re.sub(mention_regex, '', tweet)
     return tweet
 
